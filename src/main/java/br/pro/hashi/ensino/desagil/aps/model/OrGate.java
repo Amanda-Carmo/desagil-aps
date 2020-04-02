@@ -28,8 +28,12 @@ public class OrGate extends Gate {
 
         if (inputIndex == 0) {
             Nand1.connect(0, emitter);
+            Nand1.connect(1, emitter);
+
+
         } else if (inputIndex == 1) {
             Nand2.connect(1, emitter);
+            Nand2.connect(0, emitter);
         }
 
     }
