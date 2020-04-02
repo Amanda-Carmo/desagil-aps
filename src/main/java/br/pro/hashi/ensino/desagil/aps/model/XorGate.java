@@ -14,7 +14,7 @@ public class XorGate extends Gate {
 
         Nand2.connect(1, Nand1);
         Nand4.connect(1, Nand3);
-        Nand5.connect(0, Nand2);
+        Nand5.connect(1, Nand2);
         Nand5.connect(0, Nand4);
     }
 
