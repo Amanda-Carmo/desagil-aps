@@ -4,14 +4,13 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("CanBeFinal")
 public class GateView extends JPanel implements ActionListener {
 
-    private final String txtEntradas = "Entradas";
-    private final String txtSaidas = "Saídas";
+    private final Gate gate;
     private JCheckBox resultField;
     private JCheckBox[] checkBoxes;
     private Switch[] switches;
-    private final Gate gate;
 
     public GateView(Gate gate) {
         this.gate = gate;
@@ -19,7 +18,9 @@ public class GateView extends JPanel implements ActionListener {
         checkBoxes = new JCheckBox[gate.getInputSize()];
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        String txtEntradas = "Entradas";
         JLabel entradaLabel = new JLabel(txtEntradas);
+        String txtSaidas = "Saídas";
         JLabel saidasLabel = new JLabel(txtSaidas);
 
 
@@ -38,7 +39,6 @@ public class GateView extends JPanel implements ActionListener {
         resultField = new JCheckBox();
         add(resultField);
         resultField.setEnabled(false);
-
 
 
         // Update é o método que definimos abaixo para atualizar o
@@ -64,5 +64,7 @@ public class GateView extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) { update(); }
+    public void actionPerformed(ActionEvent event) {
+        update();
+    }
 }

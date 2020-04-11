@@ -1,7 +1,11 @@
 package br.pro.hashi.ensino.desagil.aps.model;
 
 public class XorGate extends Gate {
-    private NandGate Nand1, Nand2, Nand3, Nand4, Nand5;
+    private final NandGate Nand1;
+    private final NandGate Nand2;
+    private final NandGate Nand3;
+    private final NandGate Nand4;
+    private final NandGate Nand5;
 
 
     public XorGate() {
@@ -17,7 +21,6 @@ public class XorGate extends Gate {
         Nand5.connect(1, Nand2);
         Nand5.connect(0, Nand4);
     }
-
 
 
     @Override
