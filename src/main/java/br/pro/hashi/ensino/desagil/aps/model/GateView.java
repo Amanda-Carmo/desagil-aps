@@ -20,6 +20,7 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
     private Light light;
     private static final int WIDTH = 500;
     private static final int HEIGHT = 300;
+    private static final int ovalRadius = 25;
 
 
     public GateView(Gate gate) {
@@ -90,8 +91,16 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         int x = event.getX();
         int y = event.getY();
 
+        int ovalXCenter = (WIDTH/2) + 125;
+        int ovalYCenter = HEIGHT/2;
+
+        System.out.println("X:" + x);
+        System.out.println("Y:" + y);
+
+        int distSq = distanceSquared(x, y, ovalXCenter, ovalYCenter);
+
         // Se o clique foi dentro do quadrado colorido...
-        if (x >= 210 && x < 235 && y >= 311 && y < 336) {
+        if (distSq <= ovalRadius*ovalRadius) {
 
             // ...então abrimos a janela seletora de cor...
             color = JColorChooser.showDialog(this, null, color);
@@ -142,18 +151,25 @@ public class GateView extends FixedPanel implements ActionListener, MouseListene
         // Desenha a imagem, passando sua posição e seu tamanho.
         int[] imgSize = new int[2];
 
-        imgSize[0] = 309;
-        imgSize[1] = 125;
+        imgSize[0] = 250;
+        imgSize[1] = 100;
 
         g.drawImage(image, WIDTH/2 - imgSize[0]/2, HEIGHT/2 - imgSize[1]/2, imgSize[0], imgSize[1], this);
 
         // Desenha um quadrado cheio.
-        int ovalRadius = 25;
+
         g.setColor(color);
-        g.fillOval(WIDTH/2 - 15 + imgSize[0]/2, HEIGHT/2 - 15, 25, 30);
+        g.fillOval(WIDTH/2 - ovalRadius/2 + imgSize[0]/2, HEIGHT/2 - ovalRadius/2, ovalRadius, ovalRadius);
 
         // Linha necessária para evitar atrasos
         // de renderização em sistemas Linux.
         getToolkit().sync();
+    }
+
+    private int distanceSquared(int x, int y, int x2, int y2){
+        int dx = Math.abs(x-x2);
+        int dy = Math.abs(y-y2);
+        int sq = dx*dx + dy*dy;
+        return sq;
     }
 }
