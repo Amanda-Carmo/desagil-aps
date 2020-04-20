@@ -8,6 +8,7 @@ import java.awt.*;
 // basicamente um JPanel de tamanho fixo. Fixar tamanho
 // geralmente não é considerada uma boa prática de design
 // de interface, mas fazemos isso aqui por simplicidade.
+@SuppressWarnings({"SameParameterValue", "UnusedReturnValue"})
 public class FixedPanel extends JPanel {
 
     // O construtor recebe a largura e a altura do painel.
